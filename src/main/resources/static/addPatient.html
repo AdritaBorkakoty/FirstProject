@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> ENTER PATIENT DETAILS</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+
+<script type="text/javascript">
+
+
+function getData()
+{
+	
+    var searchCheck = $("input[name='variable']:checked").val();
+	alert(searchCheck);
+	var search = $("#search").val();
+	
+	var testName = $("#testName").val();
+	
+	$.ajax({
+	   type: "POST",
+	   url : "/getResponse",
+	   data : {key : search, test : testName, check : searchCheck},
+	   datatype : "json",
+	   success : function(response)
+	          {
+	            alert(response);
+			  },
+	   failure : function()
+              {
+                alert("Failed");
+			  }
+	});
+}
+</script>
+
+<body>
+
+<h1 style="text-align:center";> <font color="black" size="10"> ADD THE DETAILS OF THE PATIENT</font></h1>
+<h2 style="text-align:center";> <font color="brown"> You can add details either by email or phone number </font></h2>
+
+<form>
+		<input type ="radio" name ="variable" value="email">Email
+		<input type ="radio" name ="variable" value="phone">Phone<br>
+		<input type ="text" name ="variable1" id="search" placeholder = "Enter your email or number"><br>
+		
+		<input type ="text" name ="variable2" id="testName" placeholder = "Enter your test name">
+		<input type ="button" onclick ="getData()" value="SUBMIT">
+</form>
+
+<a href ="diagnostic.html">GO BACK TO OUR HOME PAGE"</a>
+
+</body>
+</html>

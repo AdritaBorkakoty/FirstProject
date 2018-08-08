@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>view report</title>
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+</head>
+
+<script type ="text/javascript">
+
+
+function getData()
+{
+		
+		 	var searchCheck = $("input[name='variable3']:checked").val();
+			alert(searchCheck);
+			var search = $("#search").val();
+			
+			var testName = $("#tested").val();
+			
+			$.ajax({
+			   type: "POST",
+			   url : "/getResponseofReport",
+			   data : {key : search, test : testName, check : searchCheck},
+			   datatype : "json",
+			   success : function(response)
+			          {
+			            $("#result").html(response);
+					  },
+			   failure : function()
+		              {
+		                alert("Failed");
+					  }
+			});
+}
+</script>
+
+<body>
+<h1 style="text-align:center"><font color="black" size ="10">GENERATE REPORT</font></h1>
+<h1 style="text-align:center"> <font color="brown"> Fetch details either by email or phone number </font></h1>
+
+<form>
+
+		<input type =radio name ="variable3" value="email">Email
+		<input type ="radio" name ="variable3" value="phone">Phone<br>
+		<input type ="text" name ="variable1" id="search" placeholder = "Enter your email or number"><br>
+		<br>
+		<br>
+		Enter The TEST DATE <br>
+		<input type ="text" name ="variable2" id="tested" placeholder = "Enter test date"><br>
+		<input type ="button" onclick ="getData()" value="SUBMIT">
+	
+		
+		
+		
+</form>
+<div id = "result"></div>
+<a href ="diagnostic.html"> GO BACK TO OUR HOME PAGE</a>
+</body>
+
+</html>

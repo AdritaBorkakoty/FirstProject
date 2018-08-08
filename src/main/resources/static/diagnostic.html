@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<title>DIAGNOSTIC_CENTER </title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<script type ="text/javascript">
+function variable()
+{
+	var data= $('email').val();
+	alert(data);
+}
+
+function getData()
+{
+	var email = $('email').val();
+	//alert(email);
+	ajax({
+		type : "POST",
+		url : "/getResponse",
+		deta :(emailid : email),
+		datatype : 'json';
+		success : function(response){
+			alert(response);
+		},
+		failure : function()
+		{
+			alert("dgyler");	
+		}
+});
+}
+</script>
+<body> 
+<header> 
+    <div class="row">
+       <ul class="main-nav">
+          <li class="active"><a href="addPatient.html"> ADD TEST</a></li>
+          <li class="active"><a href="viewReport.html"> GENERATE REPORT</a></li>
+
+     <div class ="hero">
+     <h1>welcome to diagnostic center.</h1>
+     </div>
+</header>
+
+</body>
+
+</html>
